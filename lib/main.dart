@@ -13,6 +13,8 @@ import 'package:merphy/src/domain/usecases/export_usecases.dart';
 import 'package:merphy/src/presentation/cubit/auth/auth_cubit.dart';
 import 'package:merphy/src/presentation/cubit/auth/verify/verify_cubit.dart';
 import 'package:merphy/src/presentation/cubit/export_news_cubits.dart';
+import 'package:merphy/src/presentation/map/all_map_controls.dart';
+import 'package:merphy/src/presentation/map/all_map_widgets.dart';
 import 'package:merphy/src/presentation/view/auth/auth_page.dart';
 import 'package:merphy/src/utils/logger.dart';
 import 'package:merphy/src/utils/token_manager.dart';
@@ -86,10 +88,22 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 await Navigator.push(
                     context,
                     MaterialPageRoute(
+                      // builder: (context) => NewsPage(),
+                      builder: (context) => AllMapControlsPage(title: "Map"),
+                    ));
+              },
+              child: Text('Map'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                // context.pushNamed(AppRoute.news.name);
+                await Navigator.push(
+                    context,
+                    MaterialPageRoute(
                       builder: (context) => NewsPage(),
                     ));
               },
-              child: Text('Next'),
+              child: Text('News'),
             ),
           ],
         ),

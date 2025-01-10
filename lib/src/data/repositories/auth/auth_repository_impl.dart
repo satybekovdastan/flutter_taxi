@@ -26,9 +26,6 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<NetworkException, UserEntity>> verifyCode({required String phone, required String code}) async {
     try {
       final result = await _authRemoteDataSource.verifyCode(phone: phone, code: code);
-      // SharedManager.instance.saveAccessToken(result.accessToken);
-
-      // TokenManager().saveAccessToken(result.accessToken);
       SharedPreferencesManager().saveToken(result.accessToken);
       return Right(result.toEntity());
     } on DioException catch (e) {

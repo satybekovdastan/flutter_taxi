@@ -10,8 +10,8 @@ import '../../../../utils/logger.dart';
 part 'verify_state.dart';
 
 class VerifyCubit extends Cubit<VerifyState> {
-  VerifyCubit(this._authUsecases) : super(VerifyInitial());
 
+  VerifyCubit(this._authUsecases) : super(VerifyInitial());
 
   Future<void> verifyCode() async {
     if (phone.isEmpty) {
@@ -25,11 +25,7 @@ class VerifyCubit extends Cubit<VerifyState> {
       final result = await _authUsecases.verifyCode(phone: phone, code: code);
       result.fold(
         (error) => emit(VerifyError(message: error.message)),
-        (success) =>
-
-          emit(DidVerify(item: success))
-
-        ,
+        (success) => emit(DidVerify(item: success)),
       );
     } catch (_) {
       rethrow;
