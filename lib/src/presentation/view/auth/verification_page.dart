@@ -27,6 +27,7 @@ class VerificationPage extends StatelessWidget {
     );
   }
 }
+
 class _VerificationPage extends StatelessWidget {
   const _VerificationPage();
 

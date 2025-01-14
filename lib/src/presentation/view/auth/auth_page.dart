@@ -32,7 +32,6 @@ class _AuthPage extends StatelessWidget {
         title: Text("Auth"),
       ),
       body: BlocConsumer<AuthCubit, AuthState>(
-        listener: (context, state) {},
         buildWhen: (_, current) {
           return current is AuthInitial ||
               current is AuthLoading ||
@@ -40,18 +39,17 @@ class _AuthPage extends StatelessWidget {
               current is AuthCodeSent ||
               current is AuthLoaded;
         },
-        builder: (context, state) {
-          final authCubit = context.read<AuthCubit>();
-          // late AuthWidget card = AuthWidget(authCubit);
+        listener: (context, state) {
           logger.e("Auth: $state");
-
           if (state is AuthCodeSent) {
+            final authCubit = context.read<AuthCubit>();
             showVerificationPage(context, authCubit.phone);
           } else if (state is AuthError) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              showErrorAlert(context, state.message);
-            });
+            showErrorAlert(context, state.message);
           }
+        },
+        builder: (context, state) {
+          final authCubit = context.read<AuthCubit>();
           return AuthWidget(authCubit);
         },
       ),

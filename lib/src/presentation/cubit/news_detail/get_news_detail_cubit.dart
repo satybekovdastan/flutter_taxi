@@ -23,5 +23,22 @@ class GetNewsDetailCubit extends Cubit<GetNewsDetailState> {
     }
   }
 
+  Future<void> setNewsText() async {
+    emit(GetNewsDetailTextChanged(text: "News Detail Text For Test"));
+    if (state is GetNewsDetailLoaded) {
+      setNewsTitle("New Title");
+    }
+  }
+
+  Future<void> setNewsTitle(String newTitle) async {
+    final currentState = state;
+    logger.e("currentState $currentState");
+    if (currentState is GetNewsDetailLoaded) {
+      final updatedItem = currentState.item.copyWith(title: newTitle);
+      emit(GetNewsDetailLoaded(item: updatedItem));
+    }
+  }
+
   final NewsUsecases _newsUsecases;
+
 }

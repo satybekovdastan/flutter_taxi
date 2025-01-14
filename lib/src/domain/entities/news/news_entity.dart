@@ -23,4 +23,18 @@ class NewsEntity extends Equatable {
     ];
   }
 
+  NewsEntity copyWith({
+    int? id,
+    String? title,
+    String? image,
+    String? createdAt,
+  }) {
+    return NewsEntity(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      image: image ?? this.image,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
 }

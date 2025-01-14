@@ -23,6 +23,15 @@ final class GetNewsDetailLoaded extends GetNewsDetailState {
   List<Object> get props => [item];
 }
 
+final class GetNewsDetailTextChanged extends GetNewsDetailState {
+  const GetNewsDetailTextChanged({required this.text});
+
+  final String text;
+
+  @override
+  List<Object> get props => [text];
+}
+
 final class GetNewsDetailError extends GetNewsDetailState {
   const GetNewsDetailError({required this.message});
 
